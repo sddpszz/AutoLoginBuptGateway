@@ -1,0 +1,2 @@
+# AutoLoginBuptGateway
+批处理文件自动进行北邮校园网关认证，可保存登陆信息
