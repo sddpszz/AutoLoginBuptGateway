@@ -1,3 +1,4 @@
+@echo off
 goto start
  = Copyright (C) 2018 sddpszz.
  =
@@ -13,23 +14,22 @@ goto start
  =  See the License for the specific language governing permissions and
  =  limitations under the License.
 :start
-@echo off
 echo BuptNetGate [version 1.2.180203] sddpszz@163.com
 echo Copyright (C) 2018 sddpszz.
 echo=
 setlocal enabledelayedexpansion
-::é€šè¿‡pingç½‘å…³åˆ¤æ–­æ˜¯å¦æŽ¥å…¥æ ¡å›­ç½‘ç»œçŽ¯å¢ƒ
+::Í¨¹ýpingÍø¹ØÅÐ¶ÏÊÇ·ñ½ÓÈëÐ£Ô°ÍøÂç»·¾³
 ping -n 1 10.3.8.211>log
-if %ERRORLEVEL% == 0 (goto SET) else (echo æ‚¨å½“å‰å°šæœªæŽ¥å…¥åŒ—é‚®æ ¡å›­ç½‘ç»œçŽ¯å¢ƒ &&goto END)
+if %ERRORLEVEL% == 0 (goto SET) else (echo Äúµ±Ç°ÉÐÎ´½ÓÈë±±ÓÊÐ£Ô°ÍøÂç»·¾³ &&goto END)
 :SET
-::é€šè¿‡pingç™¾åº¦åˆ¤æ–­æ˜¯å¦ç™»é™†ç½‘å…³
+::Í¨¹ýping°Ù¶ÈÅÐ¶ÏÊÇ·ñµÇÂ½Íø¹Ø
 ping -n 1 www.baidu.com -w 100>>log
-if %ERRORLEVEL% == 0 (echo æ‚¨å·²ç»ç™»é™†ï¼ &&goto END) else (goto LOGIN)
+if %ERRORLEVEL% == 0 (echo ÄúÒÑ¾­µÇÂ½£¡ &&goto END) else (goto LOGIN)
 :LOGIN
-::ä»Žæ–‡ä»¶ä¸­è¯»å–ç”¨æˆ·åå’Œå¯†ç ï¼Œå¹¶å­˜åˆ°çŽ¯å¢ƒå˜é‡ä¸­
-::è¯»å–å‰ä¸¤è¡Œï¼Œæ–‡ä»¶ç¬¬ä¸€è¡Œä¸ºç”¨æˆ·åï¼Œç¬¬äºŒè¡Œä¸ºå¯†ç 
+::´ÓÎÄ¼þÖÐ¶ÁÈ¡ÓÃ»§ÃûºÍÃÜÂë£¬²¢´æµ½»·¾³±äÁ¿ÖÐ
+::¶ÁÈ¡Ç°Á½ÐÐ£¬ÎÄ¼þµÚÒ»ÐÐÎªÓÃ»§Ãû£¬µÚ¶þÐÐÎªÃÜÂë
 if exist data.txt (
-     echo åŠ è½½æœ¬åœ°è´¦æˆ·ï¼Œæ­£åœ¨ç™»é™†...
+     echo ¼ÓÔØ±¾µØÕË»§£¬ÕýÔÚµÇÂ½...
 	 set v=1
 	 for /f %%i  in (data.txt) do (
 		 if !v!==1 (
@@ -43,21 +43,21 @@ if exist data.txt (
 				)
 			)
 	) else (
-     echo ä¸å­˜åœ¨æœ¬åœ°è´¦æˆ·ï¼Œè¯·è¾“å…¥
+     echo ²»´æÔÚ±¾µØÕË»§£¬ÇëÊäÈë
 	 :RELOGIN
-	 set /p user=è´¦æˆ·ï¼š
-	 set /p pass=å¯†ç ï¼š
+	 set /p user=ÕË»§£º
+	 set /p pass=ÃÜÂë£º
 	 cls
-	 ::å°†è´¦æˆ·ä¿å­˜åˆ°æœ¬åœ°
+	 ::½«ÕË»§±£´æµ½±¾µØ
 	 echo !user!>data.txt
 	 echo !pass!>>data.txt
      )
-echo ç™»é™†è´¦æˆ·ï¼š!user!
+echo µÇÂ½ÕË»§£º!user!
 curl -s http://10.3.8.211 -X POST -m 10000 -H "Host: 10.3.8.211" -H "Content-Type: application/x-www-form-urlencoded" --data "DDDDD=!user!&upass=!pass!&0MKKey=">>log
 ping -n 1 www.baidu.com -w 100>>log
-if %ERRORLEVEL% == 0 (echo=&&echo ç™»é™†æˆåŠŸ) else (echo=&&echo ç™»é™†å¤±è´¥&&echo è¯·æ£€æŸ¥è´¦æˆ·å¯†ç æˆ–æ˜¯å¦æµé‡è¶…æ”¯ï¼&&echo= &&echo è¯·é‡æ–°è¾“å…¥ï¼&&goto RELOGIN)
+if %ERRORLEVEL% == 0 (echo=&&echo µÇÂ½³É¹¦) else (echo=&&echo µÇÂ½Ê§°Ü&&echo Çë¼ì²éÕË»§ÃÜÂë»òÊÇ·ñÁ÷Á¿³¬Ö§£¡&&echo= &&echo ÇëÖØÐÂÊäÈë£¡&&goto RELOGIN)
 :END
 echo=
-echo ã€æŒ‰ä»»æ„é”®é€€å‡º...ã€‘
+echo ¡¾°´ÈÎÒâ¼üÍË³ö...¡¿
 pause>nul
 exit
