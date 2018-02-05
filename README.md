@@ -1,7 +1,7 @@
 # AutoLoginBuptGateway
 批处理文件(Batch file)
 
-直接双击运行，按照提示操作
+直接双击运行AutoLoginBuptGateway.bat，按照提示操作
 
 将自动进行北邮校园网关认证，可保存登陆信息
 
