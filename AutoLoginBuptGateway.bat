@@ -28,10 +28,10 @@ if %ERRORLEVEL% == 0 (echo 您已经登陆！ &&goto END) else (goto LOGIN)
 :LOGIN
 ::从文件中读取用户名和密码，并存到环境变量中
 ::读取前两行，文件第一行为用户名，第二行为密码
-if exist data.txt (
+if exist data (
      echo 加载本地账户，正在登陆...
 	 set v=1
-	 for /f %%i  in (data.txt) do (
+	 for /f %%i  in (data) do (
 		 if !v!==1 (
 			set user=%%i
 			set v=2
@@ -49,8 +49,8 @@ if exist data.txt (
 	 set /p pass=密码：
 	 cls
 	 ::将账户保存到本地
-	 echo !user!>data.txt
-	 echo !pass!>>data.txt
+	 echo !user!>data
+	 echo !pass!>>data
      )
 echo 登陆账户：!user!
 curl -s http://10.3.8.211 -X POST -m 10000 -H "Host: 10.3.8.211" -H "Content-Type: application/x-www-form-urlencoded" --data "DDDDD=!user!&upass=!pass!&0MKKey=">>log
